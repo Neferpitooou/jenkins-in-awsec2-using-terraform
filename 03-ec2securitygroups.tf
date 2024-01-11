@@ -1,6 +1,6 @@
 # Create Security Group - SSH Traffic
 resource "aws_security_group" "vpc-ssh" {
-  name        = "vpc-ssh-01"
+  name        = "ssh-jenkins-01"
   description = "Dev VPC SSH"
   ingress {
     description = "Allow Port 22"
@@ -19,13 +19,13 @@ resource "aws_security_group" "vpc-ssh" {
   }
 
   tags = {
-    Name = "vpc-ssh-01"
+    Name = "ssh-jenkins-01"
   }
 }
 
 # Create Security Group - Web Traffic
 resource "aws_security_group" "vpc-web" {
-  name        = "vpc-web-01"
+  name        = "web-jenkins-01"
   description = "Dev VPC Web"
   ingress {
     description = "Allow Port 80"
@@ -50,30 +50,6 @@ resource "aws_security_group" "vpc-web" {
   }
 
   tags = {
-    Name = "vpc-web-01"
+    Name = "web-jenkins-01"
   }
 }
-
-# Create Security Group - Build Server
-# resource "aws_security_group" "build-server" {
-#   name        = "build-server-02"
-#   description = "SSH from Jenkins Master"
-#   ingress {
-#     description = "Allow Port 22"
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   egress {
-#     description = "Allow all ip and ports outbound"    
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   tags = {
-#     Name = "build-server-02"
-#   }
-# }

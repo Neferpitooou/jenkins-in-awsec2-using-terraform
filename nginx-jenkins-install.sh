@@ -13,6 +13,7 @@ apt-get -y install openjdk-11-jdk nginx
 java -version
 nginx -v
 apt-get -y install jenkins
+
 systemctl status nginx  | grep Active
 systemctl status jenkins  | grep Active
 unlink /etc/nginx/sites-enabled/default
@@ -31,15 +32,6 @@ server {
 nginx -t
 systemctl reload nginx
 
-
-### STOP START AWS-EC2 ###
-# aws ec2 describe-instance-status --instance-ids i-04ecfc70a65c1ae99
-# aws ec2 stop-instances --instance-ids i-04ecfc70a65c1ae99
-# aws ec2 start-instances --instance-ids i-04ecfc70a65c1ae99
-
-
-# if [[ $(aws ec2 describe-instances --instance-ids i-04ecfc70a65c1ae99 --query 'Reservations[].Instances[].State[].Name' --output text) = "running" ]] ; then \
-#     aws ec2 stop-instances --instance-ids i-04ecfc70a65c1ae99; \
-#     elif [[ $(aws ec2 describe-instances --instance-ids i-04ecfc70a65c1ae99 --query 'Reservations[].Instances[].State[].Name' --output text) = "stopped" ]] ; then \
-#     aws ec2 start-instances --instance-ids i-04ecfc70a65c1ae99 ; \
-#     fi
+# sudo -su jenkins
+# cd /var/lib/jenkins/
+# mkdir .aws
